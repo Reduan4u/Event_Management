@@ -1,24 +1,12 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from 'sweetalert2';
 
 const LogIn = () => {
-    /* const [signInError, setSignInError] = useState('');
-    const [success, setSuccess] = useState('');
     const emailRef = useRef(null);
-    //const [showPassword, setShowPassword] = useState(false);
-
-
-    const handleLogIn = e => {
-        e.preventDefault();
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        //console.log(email, password);
-        setSignInError('');
-        setSuccess(''); */
-
-
-    const { signIn } = useContext(AuthContext);
+    const [signInError, setSignInError] = useState('');
+    const { signIn, passwordReset } = useContext(AuthContext);
     const location = useLocation();
     const Navigate = useNavigate();
 
@@ -27,58 +15,59 @@ const LogIn = () => {
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
         const password = form.get('password');
-        console.log(email, password)
+        setSignInError('');
+
         signIn(email, password)
             .then(result => {
                 console.log(result.user);
                 Navigate(location?.state ? location.state : '/')
-
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
             })
             .catch(error => {
                 console.error(error);
+                setSignInError('Invalid User Email and Password');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Invalid User Email and Password',
+                })
             })
-    }
+    };
 
-
-    /* signInWithEmailAndPassword(auth, email, password)
-        .then(result => {
-            console.log(result.user);
-            if (result.user.emailVerified) {
-                setSuccess('User Logged in Successfully.')
-                alert("Successfully Logged In")
-            }
-            else {
-                alert('Please verify your email address.')
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            setSignInError(error.message);
-            alert("invalid-login-credentials")
-        }) */
-
-
-    /* const handleResetPassword = () => {
+    const handleResetPassword = () => {
         const email = emailRef.current.value;
         if (!email) {
-            alert('please provide an email', emailRef.current.value)
+            Swal.fire(
+                'Forgot Password?',
+                'Please, Provide your Email',
+                'question'
+            )
             return;
         }
         else if
             (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-            alert('please write a valid email')
+            Swal.fire({
+                icon: 'error',
+                title: 'Wrong Email Address!',
+                text: 'Please, Provide Your Valid Email',
+            })
             return;
         }
-     
-        sendPasswordResetEmail(auth, email)
+
+        passwordReset(email)
             .then(() => {
                 alert("Please,Check your Email")
             })
             .catch(error => {
                 console.log(error);
             })
-    } */
-
+    }
 
     return (
         <div className="bg-base-200">
@@ -86,11 +75,11 @@ const LogIn = () => {
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <h1 className="text-3xl py-6 font-bold">YOUR JOURNEY, OUR EXPERTISE</h1>
+                        <p>Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
-
                             <form onSubmit={handleLogIn}>
                                 <div className="form-control">
                                     <label className="label">
@@ -99,6 +88,7 @@ const LogIn = () => {
                                     <input
                                         required
                                         type="email"
+                                        ref={emailRef}
                                         name="email"
                                         placeholder="email"
                                         className="input input-bordered" />
@@ -114,22 +104,17 @@ const LogIn = () => {
                                         placeholder="password"
                                         className="input input-bordered" />
                                     <label className="label">
-                                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                        <a href="#" onClick={handleResetPassword} className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>
                                 </div>
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Login</button>
                                 </div>
                             </form>
-
-                            {/* {
-                                signInError == 0 && <p className="text-green-600 pb-10">{signInError}
+                            {
+                                signInError && <p className="text-center text-red-600 pb-4">Invalid User Email and Password
                                 </p>
                             }
-                            {
-                                success && <p className="text-red-600 pb-10 text-center">{success}
-                                </p>
-                            } */}
                             <p className="text-center">New to this website? Please, <strong><Link to="/signUp">SignUp</Link> </strong></p>
                         </div>
                     </div>

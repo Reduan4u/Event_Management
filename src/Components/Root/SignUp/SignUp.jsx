@@ -1,33 +1,69 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-
     const { createUser } = useContext(AuthContext);
-
-
-
-
-
     const [signUpError, setSignUpError] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
 
     const handleSignUp = e => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        //const accepted = e.target.terms.checked;
+        const accepted = e.target.terms.checked;
         setSignUpError('');
         console.log(name, email, password);
+
+        // Password validation rules
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Weak Password',
+                footer: 'Password should be at least 8 characters long and contain at least one lowercase, uppercase letter, digit, and special character (!@#$%^&*()_+).'
+            })
+            setSignUpError(
+                'Password should be at least 8 characters long and contain at least one lowercase, uppercase letter, digit, and special character (!@#$%^&*()_+).'
+            );
+            return;
+        }
+        else if (!accepted) {
+            setSignUpError("Please, Accept or Terms & Conditions");
+            Swal.fire(
+                'Error?',
+                'Please, Accept or Terms & Conditions',
+                'question'
+            );
+            return;
+        }
 
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Signed Up',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                //update profile
+
+
+
             })
             .catch(error => {
                 console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Something went wrong!!!',
+                    footer: 'Please try again'
+                })
             })
 
 
@@ -70,33 +106,74 @@ const SignUp = () => {
     }
 
     return (
-        <div className="border">
-            <div className="w-1/2 m-auto">
-                <h1 className="text-4xl font-semibold text-center">Please Sign Up</h1>
-                <form action="" className=" mt-10" onSubmit={handleSignUp}>
-                    <input type="text" name="name" id="1" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 mb-4" required placeholder="Your Name" />
-                    <br />
-                    <input type="email" name="email" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 " required placeholder="Email" />
-                    <br />
-                    <input type={showPassword ? "text" : "password"} name="password" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 my-4" required placeholder="Password" /> <span onClick={() => setShowPassword(!showPassword)} className="btn">Show</span>
-                    <br />
-                    <input type="checkbox" name="terms" id="2" className="mb-3" />
-                    <label htmlFor="terms" className="ml-2" >Accept our Terms & Conditions</label>
-                    <br />
-                    <input type="submit" value="SignUp" className="btn btn-active btn-neutral w-1/2" />
-                </form>
-                {
-                    signUpError == 0 && <p className="text-green-600 pb-10">{signUpError}
-                    </p>
-                }
-                {
-                    signUpError && <p className="text-red-600 pb-10 text-center">{signUpError}
-                    </p>
-                }
-                <p className=" mb-10">Already have an account? Please, <strong><Link to="/logIn">LogIn</Link> </strong></p>
+        <div className="bg-base-200">
+            <div className="hero min-h-screen w-10/12 m-auto">
+                <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold">SignUp now!</h1>
+                        <h1 className="text-3xl py-6 font-bold">YOUR JOURNEY, OUR EXPERTISE</h1>
+                        <p>Welcome to RR Wedding Planner, where your dream wedding begins its extraordinary journey.</p>
+                    </div>
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div className="card-body">
+
+                            <form onSubmit={handleSignUp}>
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input
+                                        required
+                                        type="text"
+                                        name="name"
+                                        placeholder="Your Name"
+                                        className="input input-bordered" />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Email</span>
+                                    </label>
+                                    <input
+                                        required
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        className="input input-bordered" />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Password</span>
+                                    </label>
+                                    <input
+                                        required
+                                        type="password"
+                                        name="password"
+                                        placeholder="password"
+                                        className="input input-bordered" />
+                                </div>
+                                <input type="checkbox" name="terms" id="2" className="mb-3" />
+                                <label htmlFor="terms" className="ml-2" >Accept our Terms & Conditions</label>
+
+                                <div className="form-control mt-6">
+                                    <button type="submit" value="SignUp" className="btn btn-primary">SignUp</button>
+                                </div>
+                            </form>
+
+                            {
+                                signUpError && <p className="text-red-600 pb-10 text-center">{signUpError}
+                                </p>
+                            }
+
+                            <p className="text-center">Already have an Account? Please, <strong><Link to="/login">Log In</Link> </strong></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
 
 export default SignUp;
+
+
