@@ -74,13 +74,13 @@ const SignUp = () => {
             <div className="w-1/2 m-auto">
                 <h1 className="text-4xl font-semibold text-center">Please Sign Up</h1>
                 <form action="" className=" mt-10" onSubmit={handleSignUp}>
-                    <input type="text" name="name" id="" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 mb-4" required placeholder="Your Name" />
+                    <input type="text" name="name" id="1" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 mb-4" required placeholder="Your Name" />
                     <br />
                     <input type="email" name="email" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 " required placeholder="Email" />
                     <br />
                     <input type={showPassword ? "text" : "password"} name="password" className="w-1/2 border-2 border-black rounded-lg px-4 py-2 my-4" required placeholder="Password" /> <span onClick={() => setShowPassword(!showPassword)} className="btn">Show</span>
                     <br />
-                    <input type="checkbox" name="terms" id="" className="mb-3" />
+                    <input type="checkbox" name="terms" id="2" className="mb-3" />
                     <label htmlFor="terms" className="ml-2" >Accept our Terms & Conditions</label>
                     <br />
                     <input type="submit" value="SignUp" className="btn btn-active btn-neutral w-1/2" />
