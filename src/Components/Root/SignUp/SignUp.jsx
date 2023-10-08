@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from 'sweetalert2';
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
@@ -52,7 +53,22 @@ const SignUp = () => {
                 })
 
                 //update profile
-
+                updateProfile(result.user, {
+                    displayName: name,
+                    photoURL: "https://th.bing.com/th/id/OIP.R87PbOkdc695AAZ-_qrLYwHaHk?w=197&h=201&c=7&r=0&o=5&pid=1.7"
+                })
+                    .then(() => {
+                        console.log('profile updated')
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Something went wrong!!!',
+                            footer: 'Please try again'
+                        })
+                    })
 
 
             })
@@ -65,21 +81,6 @@ const SignUp = () => {
                     footer: 'Please try again'
                 })
             })
-
-
-        // Password validation rules
-        /* const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$/;
-        if (!passwordRegex.test(password)) {
-            setSignUpError(
-                'Password should be at least 8 characters long and contain at least one lowercase, uppercase letter, digit, and special character (!@#$%^&*()_+).'
-            );
-            return;
-        }
-        else if (!accepted) {
-            setSignUpError("Please, Accept or Terms & Conditions");
-            alert("Please, Accept or Terms & Conditions")
-            return;
-        } */
 
         /* createUserWithEmailAndPassword(auth, email, password)
             .then(result => {

@@ -38,15 +38,21 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar pr-2">
-                        <div className="w-10 rounded-full">
-                            <img src="https://th.bing.com/th/id/OIP.R87PbOkdc695AAZ-_qrLYwHaHk?w=197&h=201&c=7&r=0&o=5&pid=1.7" />
-                        </div>
-                    </label>
+
 
                     {
                         user ?
-                            <button onClick={handleSignOut} className="btn btn-primary">Sign Out</button> :
+                            <div className="flex justify-center items-center">
+                                <label tabIndex={0} className="btn  btn-circle avatar pr-2">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user.photoURL} />
+                                    </div>
+                                </label>
+                                <p>{user.displayName}</p>
+                                <button onClick={handleSignOut} className="ml-1 btn btn-primary">Sign Out</button>
+                            </div>
+
+                            :
                             <Link to="/login">
                                 <button className="btn btn-primary">Log In</button>
                             </Link>

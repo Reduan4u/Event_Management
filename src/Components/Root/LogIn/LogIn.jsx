@@ -2,11 +2,14 @@ import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from 'sweetalert2';
+import { getAuth } from "firebase/auth";
+import app from "../../firebase/firebase.config";
+const auth = getAuth(app)
 
 const LogIn = () => {
     const emailRef = useRef(null);
     const [signInError, setSignInError] = useState('');
-    const { signIn, passwordReset } = useContext(AuthContext);
+    const { signIn, passwordReset, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const Navigate = useNavigate();
 
@@ -40,6 +43,15 @@ const LogIn = () => {
             })
     };
 
+    const handleGoogle = () => {
+
+        googleSignIn()
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch()
+    }
+
     const handleResetPassword = () => {
         const email = emailRef.current.value;
         if (!email) {
@@ -60,12 +72,18 @@ const LogIn = () => {
             return;
         }
 
-        passwordReset(email)
+        passwordReset(auth, email)
             .then(() => {
-                alert("Please,Check your Email")
+                Swal.fire('Please,Check your Email')
             })
             .catch(error => {
                 console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Something went wrong!!!',
+                    footer: 'Please try again'
+                })
             })
     }
 
@@ -110,6 +128,11 @@ const LogIn = () => {
                                 <div className="form-control mt-6">
                                     <button className="btn btn-primary">Login</button>
                                 </div>
+                                <button onClick={handleGoogle}
+                                    className=" w-full mt-3 btn btn-primary flex gap-2  hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+                                    <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+                                    <span>LogIn with Google</span>
+                                </button>
                             </form>
                             {
                                 signInError && <p className="text-center text-red-600 pb-4">Invalid User Email and Password
