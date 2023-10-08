@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Wedding Gown",
+        "price": 380.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Bridal Flower",
+        "price": 65.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Wedding Hills",
+        "price": 285.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/3.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Wedding Cake",
+        "price": 175.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/4.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Bride's Crown",
+        "price": 125.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/5.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Wedding Rings",
+        "price": 500.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/6.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Wedding Gown",
+        "price": 380.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/7.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Hair Style",
+        "price": 250.00,
+        "image": "https://wpocean.com/html/tf/loveme/assets/images/product/8.jpg"
+    }
+]

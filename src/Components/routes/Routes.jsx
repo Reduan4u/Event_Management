@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root/Root";
 import ErrorPage from "../Root/ErrorPage/ErrorPage";
 import Home from "../Home/Home";
-import Blog from "../Blog/Blog";
 import AboutUs from "../AboutUs/AboutUs";
 import Contact from "../Contact/Contact";
 import Service from "../Home/Services/SelectedServices/Service";
@@ -10,6 +9,7 @@ import Services from "../Home/Services/Services";
 import LogIn from "../Root/LogIn/LogIn";
 import SignUp from "../Root/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Shop from "../Shop/Shop";
 
 const router = createBrowserRouter([
     {
@@ -22,8 +22,10 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/service',
-                element: <PrivateRoute><Services></Services></PrivateRoute>
+                path: '/services',
+                element: <Services></Services>,
+                loader: () => fetch('/service.json')
+
             },
             {
                 path: '/service/:service_id',
@@ -31,8 +33,10 @@ const router = createBrowserRouter([
                 loader: () => fetch('/service.json')
             },
             {
-                path: '/blog',
-                element: <Blog></Blog>
+                path: '/shop',
+                element: <PrivateRoute><Shop></Shop></PrivateRoute>,
+                loader: () => fetch('/product.json')
+
             },
             {
                 path: '/about-us',
@@ -40,7 +44,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/contact',
-                element: <Contact></Contact>
+                element: <PrivateRoute><Contact></Contact></PrivateRoute>
             },
             {
                 path: '/login',

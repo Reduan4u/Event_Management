@@ -10,24 +10,24 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     //const [loading, setLoading] = useState(true);
 
-    const googleSignIn = (value) => {
-        return signInWithPopup(auth, googleProvider)
-    };
+    const googleSignIn = () => {
+        return signInWithPopup(auth, googleProvider);
+    }
     const createUser = (email, password) => {
         // setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
-    };
+    }
     const signIn = (email, password) => {
         //setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
-    };
+    }
     const logOut = () => {
         //setLoading(true);
         return signOut(auth);
-    };
+    }
     const passwordReset = (auth, email) => {
         return sendPasswordResetEmail(auth, email)
-    };
+    }
 
 
     useEffect(() => {

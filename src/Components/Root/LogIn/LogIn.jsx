@@ -49,8 +49,10 @@ const LogIn = () => {
                 Navigate(location?.state ? location.state : '/')
                 console.log(result.user);
             })
-            .catch()
-    }
+            .catch(error => {
+                console.log(error);
+            })
+    };
 
     const handleResetPassword = () => {
         const email = emailRef.current.value;
@@ -88,7 +90,7 @@ const LogIn = () => {
     }
 
     return (
-        <div className="bg-base-200">
+        <div className="bg-sky-50 bg-opacity-10">
             <div className="hero min-h-screen w-10/12 m-auto">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
@@ -131,7 +133,7 @@ const LogIn = () => {
                                 <button onClick={handleGoogle}
                                     className=" w-full mt-3 btn btn-primary flex gap-2  hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
                                     <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
-                                    <span>LogIn with Google</span>
+                                    <span>LogIn with Gooogle</span>
                                 </button>
                             </form>
                             {

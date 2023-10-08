@@ -13,13 +13,13 @@ const Navbar = () => {
     }
     const links = <>
         <li><NavLink to="/">HOME</NavLink></li>
-        <li><NavLink to="/service">SERVICE</NavLink></li>
-        <li><NavLink to="/blog">BLOG</NavLink></li>
+        <li><NavLink to="/services">SERVICES</NavLink></li>
+        <li><NavLink to="/shop">SHOP</NavLink></li>
         <li><NavLink to="/contact">CONTACT</NavLink></li>
         <li><NavLink to="/about-us">ABOUT US</NavLink></li>
     </>
     return (
-        <div className="bg-base-200">
+        <div className="bg-sky-50 bg-opacity-10">
             <div className="navbar max-w-6xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">

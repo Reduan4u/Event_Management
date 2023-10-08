@@ -3,7 +3,7 @@ const Banner = () => {
     return (
         <div className="carousel w-full">
             <div id="slide1" className="carousel-item relative mb-10 hero min-h-screen" style={{ backgroundImage: 'url(https://images.squarespace-cdn.com/content/v1/569fb1fccbced6e361e09b11/1669678194915-1SKOTN97T3871MXKATCO/2022-EmmaRose-Gabriel-1094.jpg?format=2500w)' }}>
-                <div className="hero-overlay bg-white bg-opacity-25"></div>
+                <div className="hero-overlay bg-sky-50 bg-opacity-25"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="">
                         <h1 className="mb-5 text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-black">YOUR JOURNEY, OUR EXPERTISE</h1>
