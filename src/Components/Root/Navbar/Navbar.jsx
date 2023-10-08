@@ -43,11 +43,15 @@ const Navbar = () => {
                     {
                         user ?
                             <div className="flex justify-center items-center">
-                                <label tabIndex={0} className="btn  btn-circle avatar pr-2">
-                                    <div className="w-10 rounded-full">
-                                        <img src={user.photoURL} />
-                                    </div>
-                                </label>
+                                {
+                                    user.photoURL ? <label tabIndex={0} className="btn  btn-circle avatar pr-2">
+                                        <div className="w-10 rounded-full">
+                                            <img src={user.photoURL} />
+                                        </div>
+                                    </label>
+                                        :
+                                        ""
+                                }
                                 <p>{user.displayName}</p>
                                 <button onClick={handleSignOut} className="ml-1 btn btn-primary">Sign Out</button>
                             </div>

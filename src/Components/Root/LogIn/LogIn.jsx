@@ -44,9 +44,9 @@ const LogIn = () => {
     };
 
     const handleGoogle = () => {
-
         googleSignIn()
             .then((result) => {
+                Navigate(location?.state ? location.state : '/')
                 console.log(result.user);
             })
             .catch()

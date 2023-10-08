@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from 'sweetalert2';
 import { updateProfile } from "firebase/auth";
-
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const location = useLocation();
+    const Navigate = useNavigate();
 
     const handleSignUp = e => {
         e.preventDefault();
@@ -15,7 +16,6 @@ const SignUp = () => {
         const password = e.target.password.value;
         const accepted = e.target.terms.checked;
         setSignUpError('');
-        console.log(name, email, password);
 
         // Password validation rules
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$/;
@@ -43,6 +43,7 @@ const SignUp = () => {
 
         createUser(email, password)
             .then(result => {
+                Navigate(location?.state ? location.state : '/')
                 console.log(result.user);
                 Swal.fire({
                     position: 'center',
@@ -55,7 +56,7 @@ const SignUp = () => {
                 //update profile
                 updateProfile(result.user, {
                     displayName: name,
-                    photoURL: "https://th.bing.com/th/id/OIP.R87PbOkdc695AAZ-_qrLYwHaHk?w=197&h=201&c=7&r=0&o=5&pid=1.7"
+                    photoURL: ""
                 })
                     .then(() => {
                         console.log('profile updated')
@@ -69,8 +70,6 @@ const SignUp = () => {
                             footer: 'Please try again'
                         })
                     })
-
-
             })
             .catch(error => {
                 console.log(error);
@@ -81,29 +80,6 @@ const SignUp = () => {
                     footer: 'Please try again'
                 })
             })
-
-        /* createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                console.log(result.user);
-                setSignUpError("Singed Up")
-
-                // update profile
-                updateProfile(result.user, {
-                    displayName: name,
-                    photoURL: "https://example.com/jane-q-user/profile.jpg"
-                })
-                    .then(() => console.log('profile updated'))
-                    .catch()
-
-                sendEmailVerification(result.user)
-                    .then(() => {
-                        alert("please check your email");
-                    })
-            })
-            .catch(error => {
-                setSignUpError(error.message);
-                alert(error.message)
-            }) */
     }
 
     return (
