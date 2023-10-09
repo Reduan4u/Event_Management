@@ -18,9 +18,9 @@ console.log(greetign);
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: ?
+#### Answer: B
 
-<i>Write your explanation here</i>
+<i>The declared variable is "greeting" but then tried to console "greetign". As "greetign" is not defined, the result will be a ReferenceError.</i>
 
 </p>
 </details>
@@ -43,9 +43,9 @@ sum(1, "2");
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: ?
+#### Answer: C
 
-<i>Write your explanation here</i>
+<i>The function is defined to take two parameters "a" and "b" and returns their sum. In the function call sum(1, "2"), here passing the number "1" as the value of "a" and the string "2" as the value of b". In this case, it will convert the number "1" to a string and then add the two strings together.</i>
 
 </p>
 </details>
@@ -69,9 +69,9 @@ console.log(food);
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: ?
+#### Answer: A
 
-<i>Write your explanation here</i>
+<i>Reassign the 'info.favoriteFood' property to "🍝". This change the value of the "favoriteFood" property inside the "info" object, but it will not affect the original "food" array. </i>
 
 </p>
 </details>
@@ -94,9 +94,11 @@ console.log(sayHi());
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: ?
+#### Answer: B
 
-<i>Write your explanation here</i>
+<i>The "sayHi" function is defined to take one parameter "name" and returns a string `Hi there, ${name}`with the dynamic provided name. but in console we didn't provide any value of "name" and as a result the "name" parameter remains undefined. so, it will return "undefined" inside the string of that dynamic value of "name".
+
+</i>
 
 </p>
 </details>
@@ -122,9 +124,9 @@ console.log(count);
 <details><summary><b>Answer</b></summary>
 <p>
 
-#### Answer: ?
+#### Answer: C
 
-<i>Write your explanation here</i>
+<i>By using the "forEach" method run over each element in the "nums" array. The arrow function "(num) => { if (num) count += 1; }" is used as the callback function. This function checks if the current element "num" is truthy and if so, increment the count variable by 1. And as we have 3 value that are truthy, we will get 3 as the final value of "count".</i>
 
 </p>
 </details>
