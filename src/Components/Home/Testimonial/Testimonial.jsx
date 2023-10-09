@@ -10,7 +10,7 @@ const Testimonial = () => {
     }, []);
 
     return (
-        <div className="mb-10">
+        <div className="mb-10 w-10/12 m-auto">
             <p className="text-center mb-4 text-3xl font-semibold" data-aos="fade">WHAT OUR CLIENT SAY </p>
             <svg data-aos="fade" className="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" />
@@ -21,9 +21,9 @@ const Testimonial = () => {
                 <div id="item1" className="carousel-item w-full my-6">
                     <figure className="max-w-screen-md mx-auto">
                         <div className="grid grid-cols-4">
-                            <div data-aos="fade-right" className="col-span-3"><p className="text-2xl font-normal text-gray-500 ">Choosing RR Wedding Planner was the best decision we made for our wedding! From the moment we reached out, their team embraced our vision and turned it into a breathtaking reality. Our wedding day was not just beautiful; it was magical, and we owe it all to this agency. Thank you for making our dream wedding come true!</p>
+                            <div data-aos="fade-up" className="col-span-3"><p className="text-2xl font-normal text-gray-500 ">Choosing RR Wedding Planner was the best decision we made for our wedding! From the moment we reached out, their team embraced our vision and turned it into a breathtaking reality. Our wedding day was not just beautiful; it was magical, and we owe it all to this agency. Thank you for making our dream wedding come true!</p>
                             </div>
-                            <div data-aos="fade-left">
+                            <div data-aos="fade-down">
                                 <img className="h-full" src="https://wpocean.com/html/tf/loveme/assets/images//testimonial/shape2.png" alt="" />
                             </div>
                         </div>

@@ -19,7 +19,7 @@ const Navbar = () => {
         <li><NavLink to="/about-us">ABOUT US</NavLink></li>
     </>
     return (
-        <div className="bg-sky-50 bg-opacity-10">
+        <div className="bg-sky-100">
             <div className="navbar max-w-6xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -30,7 +30,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-3xl font-bold"><img src="https://wpocean.com/html/tf/loveme/assets/images/logo.png " alt="" /></a>
+                    <Link to="/"> <div className="sm:flex md:flex lg:flex justify-center items-center"><img className="" src="https://wpocean.com/html/tf/loveme/assets/images/section-title.png" alt="" /><p className="font-roboto text-gray-900 opacity-90 text-center  text-base sm:text-lg md:text-xl lg:text-2xl">RR Wedding Planner </p></div></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -43,22 +43,24 @@ const Navbar = () => {
                     {
                         user ?
                             <div className="flex justify-center items-center">
-                                {
-                                    user.photoURL ? <label tabIndex={0} className="btn  btn-circle avatar pr-2">
-                                        <div className="w-10 rounded-full">
-                                            <img src={user.photoURL} />
-                                        </div>
-                                    </label>
-                                        :
-                                        ""
-                                }
-                                <p>{user.displayName}</p>
-                                <button onClick={handleSignOut} className="ml-1 btn btn-primary">Sign Out</button>
+                                <div className=" sm:flex md:flex lg:flex justify-center items-center">
+                                    {
+                                        user.photoURL ? <img src={user.photoURL} />
+                                            :
+                                            <div className="avatar flex justify-center items-center">
+                                                <div className="w-4 sm:w-6 md:w-8 lg:w-10 inline-block">
+                                                    <img className="" src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" />
+                                                </div>
+                                            </div>
+                                    }
+                                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center">{user.displayName}</p>
+                                </div>
+                                <button onClick={handleSignOut} className="ml-1 btn btn-neutral btn-xs sm:btn-sm md:btn-md lg:btn-lg my-2">Sign Out</button>
                             </div>
 
                             :
                             <Link to="/login">
-                                <button className="btn btn-primary">Log In</button>
+                                <button className="btn btn-neutral btn-xs sm:btn-sm md:btn-md lg:btn-lg my-2">Log In</button>
                             </Link>
                     }
                 </div>

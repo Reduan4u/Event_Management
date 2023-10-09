@@ -43,7 +43,7 @@ const SignUp = () => {
 
         createUser(email, password)
             .then(result => {
-                Navigate(location?.state ? location.state : '/')
+                Navigate('/login')
                 console.log(result.user);
                 Swal.fire({
                     position: 'center',
@@ -52,7 +52,6 @@ const SignUp = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-
                 //update profile
                 updateProfile(result.user, {
                     displayName: name,
