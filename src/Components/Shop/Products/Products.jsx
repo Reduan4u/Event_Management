@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 
 const Products = ({ product }) => {
     useEffect(() => {
@@ -29,5 +31,8 @@ const Products = ({ product }) => {
         </div>
     );
 };
+Products.propTypes = {
+    product: PropTypes.object,
+}
 
 export default Products;

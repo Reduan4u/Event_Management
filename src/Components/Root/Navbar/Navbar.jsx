@@ -45,7 +45,12 @@ const Navbar = () => {
                             <div className="flex justify-center items-center">
                                 <div className=" sm:flex md:flex lg:flex justify-center items-center">
                                     {
-                                        user.photoURL ? <img src={user.photoURL} />
+                                        user.photoURL ?
+                                            <div className="avatar">
+                                                <div className="w-4 sm:w-6 md:w-8 lg:w-10 rounded-full">
+                                                    <img src={user.photoURL} />
+                                                </div>
+                                            </div>
                                             :
                                             <div className="avatar flex justify-center items-center">
                                                 <div className="w-4 sm:w-6 md:w-8 lg:w-10 inline-block">
